@@ -4,16 +4,37 @@ Welcome to the **Data Warehouse and Analytics Project** repository! 🚀
 This project demonstrates a comprehensive data warehousing and analytics solution, from building a data warehouse to generating actionable insights. Designed as a portfolio project, it highlights industry best practices in data engineering and analytics.
 
 ---
+
 ## 🏗️ Data Architecture
 
 The data architecture for this project follows Medallion Architecture **Bronze**, **Silver**, and **Gold** layers:
-![Data Architecture](docs/data_architecture.png)
 
 1. **Bronze Layer**: Stores raw data as-is from the source systems. Data is ingested from CSV Files into SQL Server Database.
 2. **Silver Layer**: This layer includes data cleansing, standardization, and normalization processes to prepare data for analysis.
 3. **Gold Layer**: Houses business-ready data modeled into a star schema required for reporting and analytics.
 
 ---
+
+## 📊 Architecture Documentation
+
+This project includes comprehensive documentation of the data warehouse architecture:
+
+### Core Documentation Files
+
+- **[diagram_specifications.md](docs/diagram_specifications.md)**: Detailed specifications for creating architecture diagrams (data flows, ERDs, system architecture)
+- **[data_catalog.md](docs/data_catalog.md)**: Complete catalog of datasets with field descriptions and metadata
+- **[naming_conventions.md](docs/naming_conventions.md)**: Consistent naming standards for tables, columns, and files
+
+### Architecture Overview
+
+| Layer      | Purpose             | Data State             | Access Method       |
+| ---------- | ------------------- | ---------------------- | ------------------- |
+| **Bronze** | Raw data storage    | As-is from sources     | Direct table access |
+| **Silver** | Cleansed & enriched | Business logic applied | Transformed views   |
+| **Gold**   | Analytics-ready     | Pre-aggregated KPIs    | Star schema views   |
+
+For detailed specifications on architecture components, see [docs/diagram_specifications.md](docs/diagram_specifications.md).
+
 ## 📖 Project Overview
 
 This project involves:
@@ -24,18 +45,20 @@ This project involves:
 4. **Analytics & Reporting**: Creating SQL-based reports and dashboards for actionable insights.
 
 🎯 This repository is an excellent resource for professionals and students looking to showcase expertise in:
+
 - SQL Development
 - Data Architect
-- Data Engineering  
-- ETL Pipeline Developer  
-- Data Modeling  
-- Data Analytics  
+- Data Engineering
+- ETL Pipeline Developer
+- Data Modeling
+- Data Analytics
 
 ---
 
 ## 🛠️ Important Links & Tools:
 
 Everything is for Free!
+
 - **[Datasets](datasets/):** Access to the project dataset (csv files).
 - **[SQL Server Express](https://www.microsoft.com/en-us/sql-server/sql-server-downloads):** Lightweight server for hosting your SQL database.
 - **[SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16):** GUI for managing and interacting with databases.
@@ -51,9 +74,11 @@ Everything is for Free!
 ### Building the Data Warehouse (Data Engineering)
 
 #### Objective
+
 Develop a modern data warehouse using SQL Server to consolidate sales data, enabling analytical reporting and informed decision-making.
 
 #### Specifications
+
 - **Data Sources**: Import data from two source systems (ERP and CRM) provided as CSV files.
 - **Data Quality**: Cleanse and resolve data quality issues prior to analysis.
 - **Integration**: Combine both sources into a single, user-friendly data model designed for analytical queries.
@@ -65,27 +90,72 @@ Develop a modern data warehouse using SQL Server to consolidate sales data, enab
 ### BI: Analytics & Reporting (Data Analysis)
 
 #### Objective
+
 Develop SQL-based analytics to deliver detailed insights into:
+
 - **Customer Behavior**
 - **Product Performance**
 - **Sales Trends**
 
-These insights empower stakeholders with key business metrics, enabling strategic decision-making.  
+These insights empower stakeholders with key business metrics, enabling strategic decision-making.
 
 For more details, refer to [docs/requirements.md](docs/requirements.md).
 
-## 📂 Repository Structure
+---
+
+## 🧭 How to Find What You Need
+
+| I want to...                        | Go to...                                                           | Why?                                                         |
+| ----------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Set up the project**              | [docs/requirements.md](docs/requirements.md)                       | Complete setup instructions and prerequisites                |
+| **Understand the data model**       | [docs/data_catalog.md](docs/data_catalog.md)                       | Field descriptions, data types, and business rules           |
+| **Follow naming conventions**       | [docs/naming_conventions.md](docs/naming_conventions.md)           | Consistent naming standards for tables, columns, and files   |
+| **See architecture specifications** | [docs/diagram_specifications.md](docs/diagram_specifications.md)   | Detailed specs for data flows, ERDs, and system architecture |
+| **Check data quality**              | [tests/quality_checks_silver.sql](tests/quality_checks_silver.sql) | Data validation and quality assurance                        |
+| **Run the ETL process**             | [scripts/init_database.sql](scripts/init_database.sql)             | Database setup and initial load                              |
+
+---
+
+## 🆘 Support & Troubleshooting
+
+### Common Issues & Solutions
+
+| Issue                   | Symptom                              | Solution                                                                                      |
+| ----------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------- |
+| **Permission Errors**   | "Access denied" when running scripts | Run SSMS as Administrator, check file permissions                                             |
+| **Missing Data**        | Tables appear empty after loading    | Verify CSV file paths, check BULK INSERT permissions                                          |
+| **Connection Issues**   | Can't connect to SQL Server          | Ensure SQL Server service is running, check connection string                                 |
+| **Schema Errors**       | "Invalid object name" errors         | Run scripts in correct order: init_database.sql first                                         |
+| **Data Quality Issues** | Unexpected NULL values or duplicates | Check [tests/quality_checks_silver.sql](tests/quality_checks_silver.sql) for validation rules |
+
+### Getting Help
+
+| Question Type              | Resource                                                         | Details                                          |
+| -------------------------- | ---------------------------------------------------------------- | ------------------------------------------------ |
+| **Setup Issues**           | [docs/requirements.md](docs/requirements.md)                     | Prerequisites, installation, and configuration   |
+| **Data Model Questions**   | [docs/data_catalog.md](docs/data_catalog.md)                     | Field definitions, relationships, business rules |
+| **Architecture Questions** | [docs/diagram_specifications.md](docs/diagram_specifications.md) | System design, layer purposes, data flows        |
+| **ETL Problems**           | [scripts/](scripts/) + [tests/](tests/)                          | Script execution, error handling, validation     |
+| **Naming Standards**       | [docs/naming_conventions.md](docs/naming_conventions.md)         | Table/column naming, file organization           |
+
+### Quick Start Checklist
+
+- ✅ SQL Server 2016+ installed and running
+- ✅ SSMS installed and connected
+- ✅ CSV files in correct [datasets/](datasets/) folders
+- ✅ Execute [scripts/init_database.sql](scripts/init_database.sql) first
+- ✅ Run Bronze, Silver, Gold scripts in sequence
+- ✅ Validate with [tests/quality_checks_silver.sql](tests/quality_checks_silver.sql)
+
 ```
 data-warehouse-project/
 │
 ├── datasets/                           # Raw datasets used for the project (ERP and CRM data)
 │
 ├── docs/                               # Project documentation and architecture details
-│   ├── etl.drawio                      # Draw.io file shows all different techniquies and methods of ETL
-│   ├── data_architecture.drawio        # Draw.io file shows the project's architecture
 │   ├── data_catalog.md                 # Catalog of datasets, including field descriptions and metadata
-│   ├── data_flow.drawio                # Draw.io file for the data flow diagram
-│   ├── data_models.drawio              # Draw.io file for data models (star schema)
+│   ├── diagram_specifications.md       # Detailed specifications for creating architecture diagrams
+│   ├── etl.                 # Draw.io file shows all different techniquies and methods of ETL
 │   ├── naming-conventions.md           # Consistent naming guidelines for tables, columns, and files
 │
 ├── scripts/                            # SQL scripts for ETL and transformations
@@ -100,46 +170,32 @@ data-warehouse-project/
 ├── .gitignore                          # Files and directories to be ignored by Git
 └── requirements.txt                    # Dependencies and requirements for the project
 ```
----
-
-## ☕ Stay Connected
-
-Let's stay in touch! Feel free to connect with me on the following platforms:
-
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](http://bit.ly/3GiCVUE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/baraa-khatib-salkini)
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.datawithbaraa.com)
-[![Newsletter](https://img.shields.io/badge/Newsletter-FF5722?style=for-the-badge&logo=substack&logoColor=white)](https://bit.ly/BaraaNewsletter)
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/baraasalkini)
-[![Join](https://img.shields.io/badge/Join-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@datawithbaraa)
-
-All Courses and their materials are completely free, and all I ask is your support through subscribing, liking, and commenting on my channel. Your engagement means the world to me and It help the channel!
-- ✅ **SQL Full Course:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/sql-ultimate-course/) | [GIT Repo](https://github.com/DataWithBaraa/sql-ultimate-course)
-- ✅ **Tableau Full Course:** [Course Link](https://www.youtube.com/watch?v=K3pXnbniUcM) | [Download Materials](https://www.datawithbaraa.com/tableau/tableau-thank-you/) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
-
-- ✅ **SQL Data Warehouse Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-warehouse-project)
-- ✅ **SQL Exploratory Data Analysis Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-analytics-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-analytics-project)
-- ✅ **SQL Advanced Data Analysis Project:** [Course Link](https://youtu.be/SSKVgrwhzus) | [Download Materials](https://www.datawithbaraa.com/sql-introduction/advanced-sql-analytics-project/) | [GIT Repo](https://github.com/DataWithBaraa/sql-data-analytics-project)
-  
-- ✅ **Tableau Sales Project:** [Course Link](https://www.youtube.com/watch?v=dahrmqT5GD4) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
-- ✅ **Tableau HR Project:** [Course Link](https://www.youtube.com/watch?v=UcGF09Awm4Y) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials) | [Public](https://public.tableau.com/app/profile/baraa.salkini/vizzes)
-- ✅ **ChatGPT:** [Course Link](https://www.youtube.com/watch?v=LJLNfei4i-c) | [Download Materials](https://datawithbaraa.substack.com/p/access-to-course-materials)
 
 ---
 
-## 🛡️ License
+## 📝 Document Metadata
 
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
+| Document                      | Lines | Created      | Version | Type       |
+| ----------------------------- | ----- | ------------ | ------- | ---------- |
+| **data_catalog.md**           | 500+  | Mar 22, 2026 | 2.0     | Reference  |
+| **naming_conventions.md**     | 150+  | Mar 22, 2026 | 2.0     | Reference  |
+| **diagram_specifications.md** | 280+  | Mar 22, 2026 | 1.0     | Reference  |
+| **README.md** (this file)     | 200+  | Mar 22, 2026 | 2.0     | Navigation |
 
-## 🌟 About Me
+**Total Documentation:** ~1,200+ lines of detailed guides + diagram specifications
 
-Hi there! I'm **Baraa Khatib Salkini**, also known as **Data With Baraa**. I’m an IT professional and passionate YouTuber on a mission to share knowledge and make working with data enjoyable and engaging!
+---
 
-Let's stay in touch! Feel free to connect with me on the following platforms:
+## ✅ Next Steps
 
-[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=youtube&logoColor=white)](http://bit.ly/3GiCVUE)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/baraa-khatib-salkini)
-[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=google-chrome&logoColor=white)](https://www.datawithbaraa.com)
-[![Newsletter](https://img.shields.io/badge/Newsletter-FF5722?style=for-the-badge&logo=substack&logoColor=white)](https://bit.ly/BaraaNewsletter)
-[![PayPal](https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white)](https://paypal.me/baraasalkini)
-[![Join](https://img.shields.io/badge/Join-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@datawithbaraa)
+1. **New to the project?** → Read [docs/requirements.md](docs/requirements.md) for setup
+2. **Need data details?** → Check [docs/data_catalog.md](docs/data_catalog.md)
+3. **Understanding architecture?** → Review [docs/diagram_specifications.md](docs/diagram_specifications.md)
+4. **Following standards?** → Reference [docs/naming_conventions.md](docs/naming_conventions.md)
+5. **Having issues?** → See troubleshooting section above
+
+---
+
+**Happy analyzing! 🎉**
+
+For questions or updates, refer to the appropriate documentation file above.

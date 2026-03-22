@@ -56,6 +56,10 @@ CREATE TABLE silver.crm_sales_details (
     sls_sales       INT,
     sls_quantity    INT,
     sls_price       INT,
+    -- Business Logic Columns
+    profit_amount   INT,
+    shipping_delay_days INT,
+    order_value_category NVARCHAR(20),
     dwh_create_date DATETIME2 DEFAULT GETDATE()
 );
 GO

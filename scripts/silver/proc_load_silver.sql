@@ -125,7 +125,10 @@ BEGIN
 			sls_due_dt,
 			sls_sales,
 			sls_quantity,
-			sls_price
+			sls_price,
+			profit_amount,
+			shipping_delay_days,
+			order_value_category
 		)
 		SELECT 
 			sls_ord_num,
@@ -147,14 +150,38 @@ BEGIN
 				WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales != sls_quantity * ABS(sls_price) 
 					THEN sls_quantity * ABS(sls_price)
 				ELSE sls_sales
-			END AS sls_sales, -- Recalculate sales if original value is missing or incorrect
+			END AS sls_sales, 
 			sls_quantity,
 			CASE 
 				WHEN sls_price IS NULL OR sls_price <= 0 
 					THEN sls_sales / NULLIF(sls_quantity, 0)
-				ELSE sls_price  -- Derive price if original value is invalid
-			END AS sls_price
-		FROM bronze.crm_sales_details;
+				ELSE sls_price
+			END AS sls_price,
+			-- Business Logic: Profit = Sales - (Cost * Quantity)
+			CASE 
+				WHEN sls_sales IS NULL OR sls_sales <= 0 OR sls_sales != sls_quantity * ABS(sls_price) 
+					THEN (sls_quantity * ABS(sls_price)) - (cp.prd_cost * sls_quantity)
+				ELSE sls_sales - (cp.prd_cost * sls_quantity)
+			END AS profit_amount,
+			-- Business Logic: Shipping Delay = Due Date - Shipped Date (negative = on time, positive = late)
+			DATEDIFF(DAY, 
+				CASE WHEN sls_ship_dt = 0 OR LEN(sls_ship_dt) != 8 THEN NULL
+					 ELSE CAST(CAST(sls_ship_dt AS VARCHAR) AS DATE) END,
+				CASE WHEN sls_due_dt = 0 OR LEN(sls_due_dt) != 8 THEN NULL
+					 ELSE CAST(CAST(sls_due_dt AS VARCHAR) AS DATE) END
+			) AS shipping_delay_days,
+			-- Business Logic: Categorize order value
+			CASE 
+				WHEN CASE WHEN sls_sales IS NULL OR sls_sales <= 0 
+					THEN sls_quantity * ABS(sls_price)
+					ELSE sls_sales END > 10000 THEN 'High-Value'
+				WHEN CASE WHEN sls_sales IS NULL OR sls_sales <= 0 
+					THEN sls_quantity * ABS(sls_price)
+					ELSE sls_sales END >= 5000 THEN 'Medium-Value'
+				ELSE 'Standard'
+			END AS order_value_category
+		FROM bronze.crm_sales_details
+		LEFT JOIN silver.crm_prd_info cp ON bronze.crm_sales_details.sls_prd_key = cp.prd_key;
         SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(SECOND, @start_time, @end_time) AS NVARCHAR) + ' seconds';
         PRINT '>> -------------';
