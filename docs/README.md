@@ -22,8 +22,7 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - Project directory structure
 - Maintenance responsibilities
 
-**Time to Read:** 15-20 minutes  
-**Audience:** Project managers, stakeholders, new team members
+**Good for:** Getting oriented with the project
 
 ---
 
@@ -46,8 +45,9 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - Troubleshooting guide
 - Data refresh procedures
 
-**Time to Read:** 25-30 minutes  
-**Audience:** Database administrators, data engineers
+**Good for:** Building and troubleshooting the data warehouse
+
+---
 
 ---
 
@@ -69,8 +69,7 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - Refresh frequency recommendations
 - SQL calculation examples
 
-**Time to Read:** 20-25 minutes  
-**Audience:** Business analysts, finance teams, BI developers
+**Good for:** Understanding what the metrics mean
 
 ---
 
@@ -92,8 +91,7 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - Suggested reporting schedule
 - Query repository structure
 
-**Time to Read:** 30-40 minutes (reference document - read as needed)  
-**Audience:** Business analysts, report developers, data analysts, BI teams
+**Good for:** Writing analysis queries and building reports
 
 ---
 
@@ -113,8 +111,7 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - Data quality rules
 - Example values
 
-**Time to Read:** 15-20 minutes (reference - use as needed)  
-**Audience:** Data engineers, report developers, data quality teams
+**Good for:** Understanding what data is available
 
 ---
 
@@ -133,12 +130,11 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - File naming standards
 - Real examples from this project
 
-**Time to Read:** 10-15 minutes (reference - as needed)  
-**Audience:** Data engineers, database administrators
+**Good for:** Maintaining consistency when adding new objects
 
 ---
 
-## � [diagram_specifications.md](diagram_specifications.md) - Architecture Specifications
+## 📋 [diagram_specifications.md](diagram_specifications.md) - Architecture Specifications
 
 **What:** Detailed specifications for creating architecture diagrams and understanding system design
 
@@ -153,14 +149,9 @@ Welcome! This directory contains the comprehensive guide to your E-commerce SQL 
 - System architecture components and infrastructure
 - ETL process workflow with error handling
 
-**Time to Read:** 20-25 minutes  
-**Audience:** Architects, system designers, documentation teams
+**Good for:** Understanding system architecture and design
 
 ---
-
-## 🚀 Getting Started (3-Step Quickstart)
-
-### Step 1: Understand the Architecture (15 min)
 
 ```
 Read: PROJECT_OVERVIEW.md → Sections 1-3 (intro + architecture + data sources)
